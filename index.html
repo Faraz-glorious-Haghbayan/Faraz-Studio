@@ -10,34 +10,69 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>Faraz Studio | Abrax Protocol</title>
+    <title>Faraz Studio | Abrax Protocol — Sci-Fi Space Action</title>
     <meta
       name="description"
-      content="Faraz Studio creates cinematic sci-fi games including Abrax Protocol. Explore releases, updates, and future projects."
+      content="Faraz Studio is an independent single-developer studio creating fast, atmospheric sci-fi games. Play Abrax Protocol free on Android."
     />
-    <meta name="theme-color" content="#05060a" />
+    <meta name="theme-color" content="#05070d" />
     <link rel="canonical" href="https://farazstudio.com/" />
+    <link rel="icon" href="favicon.ico?v=4" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon-32x32.png?v=4"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon-16x16.png?v=4"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="apple-touch-icon.png?v=4"
+    />
+    <link rel="manifest" href="site.webmanifest?v=4" />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Rajdhani:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
     <style>
       :root {
         color-scheme: dark;
-        --void: #05060a;
-        --panel: rgba(11, 16, 28, 0.72);
-        --panel-strong: rgba(14, 20, 35, 0.92);
-        --line: rgba(149, 197, 255, 0.2);
-        --line-hot: rgba(255, 70, 70, 0.45);
-        --text: #f4f7fb;
-        --muted: #a8b4c4;
-        --ice: #72e7ff;
-        --ember: #ff443c;
-        --amber: #ffd06a;
-        --green: #4dffbd;
-        --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+        --void: #05070d;
+        --void-elevated: #090e1a;
+        --panel: rgba(11, 16, 29, 0.78);
+        --panel-solid: #0d1424;
+        --panel-card: rgba(14, 21, 38, 0.88);
+        --panel-card-hover: rgba(20, 31, 56, 0.96);
+        --line: rgba(114, 231, 255, 0.16);
+        --line-hot: rgba(255, 68, 60, 0.45);
+        --text: #f0f4fb;
+        --text-bright: #ffffff;
+        --muted: #9bb0c9;
+        --dim: #5c6e86;
+        --ice: #00f0ff;
+        --ice-glow: rgba(0, 240, 255, 0.35);
+        --ember: #ff3b30;
+        --ember-glow: rgba(255, 59, 48, 0.38);
+        --amber: #ffb800;
+        --green: #00f59b;
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 14px;
+        --shadow-xl: 0 24px 70px rgba(0, 0, 0, 0.6);
+        --font-mono: "JetBrains Mono", Consolas, monospace;
+        --font-head: "Rajdhani", sans-serif;
+        --font-body: "Space Grotesk", "Trebuchet MS", sans-serif;
       }
 
       * {
@@ -51,70 +86,69 @@
       body {
         margin: 0;
         min-height: 100vh;
-        background:
-          linear-gradient(120deg, rgba(255, 68, 60, 0.18), transparent 28%),
-          radial-gradient(
-            circle at 82% 12%,
-            rgba(114, 231, 255, 0.18),
-            transparent 28rem
-          ),
-          radial-gradient(
-            circle at 14% 62%,
-            rgba(255, 208, 106, 0.12),
-            transparent 24rem
-          ),
-          var(--void);
+        background-color: var(--void);
         color: var(--text);
-        font-family: "Space Grotesk", "Trebuchet MS", sans-serif;
+        font-family: var(--font-body);
         overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
       }
 
-      body::before {
-        content: "";
+      /* Starfield canvas background */
+      #starfield-canvas {
         position: fixed;
         inset: 0;
-        z-index: -2;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-          linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.028) 1px,
-            transparent 1px
-          );
-        background-size: 72px 72px;
-        mask-image: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.7),
-          transparent 78%
-        );
-      }
-
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
+        width: 100%;
+        height: 100%;
         pointer-events: none;
+        z-index: -2;
+      }
+
+      .bg-vignette {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
         background:
-          linear-gradient(
-            transparent 0 94%,
-            rgba(114, 231, 255, 0.08) 95% 96%,
-            transparent 97%
+          radial-gradient(
+            circle at 50% 0%,
+            rgba(0, 240, 255, 0.1),
+            transparent 45rem
           ),
-          repeating-linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.025) 0 1px,
-            transparent 1px 5px
+          radial-gradient(
+            circle at 85% 40%,
+            rgba(255, 59, 48, 0.08),
+            transparent 35rem
+          ),
+          linear-gradient(
+            180deg,
+            rgba(5, 7, 13, 0.2) 0%,
+            rgba(5, 7, 13, 0.95) 100%
           );
-        background-size:
-          100% 6px,
-          100% 100%;
-        opacity: 0.34;
+      }
+
+      .bg-grid {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, 0.85) 0%,
+          rgba(0, 0, 0, 0) 80%
+        );
       }
 
       a {
         color: inherit;
         text-decoration: none;
+        transition:
+          color 180ms ease,
+          opacity 180ms ease;
       }
 
       img {
@@ -123,42 +157,166 @@
       }
 
       .page-shell {
-        width: min(1180px, calc(100% - 32px));
+        width: min(1180px, calc(100% - 36px));
         margin: 0 auto;
       }
 
+      /* Typography & Utility */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-head);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-top: 0;
+        color: var(--text-bright);
+        font-weight: 800;
+        line-height: 0.95;
+      }
+
+      p {
+        margin-top: 0;
+      }
+
+      .mono {
+        font-family: var(--font-mono);
+        letter-spacing: 0.04em;
+      }
+
+      .kicker {
+        color: var(--ice);
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .kicker::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--ice);
+        box-shadow: 0 0 10px var(--ice);
+        display: inline-block;
+      }
+
+      .text-ember {
+        color: var(--ember);
+      }
+
+      /* Buttons */
+      .button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 0 22px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-bright);
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+        transition: all 220ms ease;
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        border-color: var(--ice);
+        background: rgba(0, 240, 255, 0.12);
+        box-shadow: 0 0 24px rgba(0, 240, 255, 0.25);
+      }
+
+      .button.primary {
+        background: linear-gradient(135deg, #ff3b30, #b8140d);
+        border-color: rgba(255, 100, 90, 0.8);
+        box-shadow: 0 10px 28px rgba(255, 59, 48, 0.32);
+      }
+
+      .button.primary:hover {
+        background: linear-gradient(135deg, #ff5247, #d41810);
+        box-shadow: 0 0 35px rgba(255, 59, 48, 0.55);
+        border-color: #ffffff;
+      }
+
+      .button.cyan {
+        background: linear-gradient(135deg, #00d4e3, #008291);
+        border-color: #80f7ff;
+        color: #030a10;
+        font-weight: 800;
+        box-shadow: 0 10px 25px rgba(0, 240, 255, 0.3);
+      }
+
+      .button.cyan:hover {
+        background: linear-gradient(135deg, #33f3ff, #00bcd4);
+        box-shadow: 0 0 32px rgba(0, 240, 255, 0.6);
+        color: #000;
+      }
+
+      .button-icon {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+        flex-shrink: 0;
+      }
+
+      /* Navigation Header */
       .site-header {
         position: sticky;
         top: 0;
-        z-index: 20;
-        backdrop-filter: blur(18px);
-        background: rgba(5, 6, 10, 0.72);
+        z-index: 200;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(5, 7, 13, 0.88);
         border-bottom: 1px solid var(--line);
       }
 
-      .nav {
-        min-height: 72px;
+      .nav-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 18px;
+        min-height: 70px;
       }
 
       .brand {
         display: flex;
         align-items: center;
         gap: 12px;
-        min-width: 0;
+        z-index: 210;
       }
 
       .brand-mark {
-        width: 42px;
-        height: 42px;
-        border: 1px solid rgba(114, 231, 255, 0.42);
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(0, 240, 255, 0.4);
         background: #07090f;
-        display: block;
+        display: grid;
+        place-items: center;
         overflow: hidden;
-        box-shadow: 0 0 28px rgba(255, 68, 60, 0.28);
+        box-shadow: 0 0 18px rgba(255, 59, 48, 0.25);
       }
 
       .brand-mark img {
@@ -167,1057 +325,988 @@
         object-fit: cover;
       }
 
-      .brand-name {
+      .brand-text {
         display: grid;
-        gap: 1px;
+        gap: 2px;
       }
 
-      .brand-name strong {
-        font:
-          700 18px/1 "Rajdhani",
-          sans-serif;
+      .brand-text strong {
+        font: 800 18px/1 var(--font-head);
         letter-spacing: 0.08em;
         text-transform: uppercase;
+        color: #fff;
       }
 
-      .brand-name span {
+      .brand-text span {
         color: var(--muted);
-        font-size: 12px;
+        font-family: var(--font-mono);
+        font-size: 11px;
       }
 
-      .nav-links {
+      .desktop-links {
         display: flex;
         align-items: center;
-        gap: clamp(12px, 2vw, 28px);
-        color: #d6dfeb;
-        font:
-          700 13px/1 "Rajdhani",
-          sans-serif;
+        gap: clamp(14px, 2vw, 28px);
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 14px;
         letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
-      .nav-links a {
+      .desktop-links a {
         position: relative;
-        padding: 8px 0;
+        padding: 6px 0;
+        color: #cdd8e7;
       }
 
-      .nav-links a::after {
+      .desktop-links a:hover {
+        color: #ffffff;
+      }
+
+      .desktop-links a::after {
         content: "";
         position: absolute;
         left: 0;
         bottom: 0;
         width: 0;
         height: 2px;
-        background: var(--ember);
+        background: var(--ice);
         transition: width 180ms ease;
       }
 
-      .nav-links a:hover::after,
-      .nav-links a:focus-visible::after {
+      .desktop-links a:hover::after {
         width: 100%;
       }
 
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 46px;
-        padding: 0 18px;
-        border: 1px solid rgba(114, 231, 255, 0.34);
-        background: rgba(255, 255, 255, 0.045);
-        color: var(--text);
-        font:
-          700 13px/1 "Rajdhani",
-          sans-serif;
-        letter-spacing: 0.11em;
-        text-transform: uppercase;
-        transition:
-          transform 180ms ease,
-          border-color 180ms ease,
-          background 180ms ease;
-      }
-
-      .button:hover,
-      .button:focus-visible {
-        transform: translateY(-2px);
-        border-color: var(--ice);
-        background: rgba(114, 231, 255, 0.1);
-      }
-
-      .button.primary {
-        border-color: rgba(255, 68, 60, 0.7);
-        background: linear-gradient(135deg, #f3222c, #9e101a);
-        box-shadow: 0 18px 40px rgba(255, 68, 60, 0.2);
-      }
-
-      .hero {
-        position: relative;
-        min-height: calc(100vh - 72px);
-        display: grid;
-        align-items: end;
-        isolation: isolate;
-        overflow: hidden;
-        padding: 0;
-      }
-
-      .hero-media {
-        position: absolute;
-        inset: 0;
-        z-index: -2;
-      }
-
-      .hero-media img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 32%;
-        filter: saturate(1.12) contrast(1.08);
-        transform: scale(1.02);
-        animation: slow-drift 18s ease-in-out infinite alternate;
-      }
-
-      .hero::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        background:
-          linear-gradient(
-            90deg,
-            rgba(5, 6, 10, 0.96),
-            rgba(5, 6, 10, 0.54) 48%,
-            rgba(5, 6, 10, 0.2)
-          ),
-          linear-gradient(
-            0deg,
-            rgba(5, 6, 10, 1),
-            rgba(5, 6, 10, 0.08) 58%,
-            rgba(5, 6, 10, 0.32)
-          );
-      }
-
-      .hero-content {
-        display: grid;
-        grid-template-columns: minmax(0, 680px) minmax(240px, 360px);
-        gap: clamp(24px, 6vw, 72px);
-        align-items: end;
-        padding: clamp(76px, 10vw, 130px) 0 clamp(44px, 7vw, 86px);
-      }
-
-      .kicker {
-        color: var(--ice);
-        font:
-          700 14px/1.2 "Rajdhani",
-          sans-serif;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
-        margin: 0 0 16px;
-      }
-
-      h1,
-      h2,
-      h3,
-      p {
-        margin-top: 0;
-      }
-
-      h1 {
-        margin-bottom: 18px;
-        font:
-          800 clamp(48px, 11vw, 132px) / 0.86 "Rajdhani",
-          sans-serif;
-        letter-spacing: 0;
-        max-width: 780px;
-        text-transform: uppercase;
-      }
-
-      .hero-copy {
-        max-width: 660px;
-        color: #dbe5f2;
-        font-size: clamp(17px, 2vw, 22px);
-        line-height: 1.55;
-        margin-bottom: 28px;
-      }
-
-      .hero-actions {
+      .header-right {
         display: flex;
-        flex-wrap: wrap;
+        align-items: center;
         gap: 12px;
       }
 
-      .signal-panel {
-        position: relative;
+      .header-right .button {
+        min-height: 40px;
+        padding: 0 16px;
+        font-size: 12px;
+      }
+
+      /* Mobile Hamburger Menu Button */
+      .menu-toggle-btn {
+        display: none;
+        background: transparent;
         border: 1px solid var(--line);
-        background: linear-gradient(
-          180deg,
-          rgba(9, 14, 24, 0.84),
-          rgba(10, 14, 24, 0.56)
-        );
-        box-shadow: var(--shadow);
-        padding: 22px;
+        color: var(--text-bright);
+        padding: 8px 10px;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        z-index: 210;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .menu-toggle-btn svg {
+        width: 22px;
+        height: 22px;
+        display: block;
+        fill: currentColor;
+      }
+
+      /* Mobile Navigation Drawer Overlay */
+      .mobile-menu-drawer {
+        position: fixed;
+        inset: 0;
+        background: rgba(4, 6, 12, 0.98);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        z-index: 190;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        padding: 80px 24px 40px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition: all 260ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .mobile-menu-drawer.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .mobile-menu-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        font-family: var(--font-head);
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .mobile-menu-links a {
+        color: #d6e2f0;
+      }
+
+      .mobile-menu-links a:hover {
+        color: var(--ice);
+      }
+
+      .mobile-cta-row {
+        margin-top: 10px;
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .mobile-cta-row .button {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        min-height: calc(100vh - 70px);
+        display: flex;
+        align-items: center;
+        padding: clamp(40px, 7vw, 90px) 0;
+      }
+
+      .hero-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+        gap: clamp(28px, 5vw, 60px);
+        align-items: center;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 5px 12px;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        background: rgba(0, 240, 255, 0.06);
+        color: var(--ice);
+        font-family: var(--font-mono);
+        font-size: 12px;
+        margin-bottom: 20px;
+        border-radius: 2px;
+      }
+
+      .pulse-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 10px var(--green);
+        animation: pulse 2s infinite ease-in-out;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.35);
+          opacity: 0.6;
+        }
+      }
+
+      h1.hero-title {
+        font-size: clamp(48px, 8.5vw, 108px);
+        line-height: 0.88;
+        letter-spacing: -0.01em;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+
+      .hero-desc {
+        font-size: clamp(16px, 2vw, 20px);
+        color: #d1dfef;
+        line-height: 1.6;
+        max-width: 620px;
+        margin-bottom: 30px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+
+      .hero-highlights {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
         overflow: hidden;
       }
 
-      .signal-panel::before {
-        content: "";
-        position: absolute;
-        inset: 0 0 auto;
-        height: 3px;
-        background: linear-gradient(
-          90deg,
-          var(--ember),
-          var(--amber),
-          var(--ice)
-        );
+      .highlight-box {
+        background: rgba(9, 14, 26, 0.88);
+        padding: 14px 16px;
       }
 
-      .signal-panel .label {
-        color: var(--muted);
-        font:
-          700 12px/1 "Rajdhani",
-          sans-serif;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        margin-bottom: 12px;
-      }
-
-      .signal-panel strong {
+      .highlight-box .val {
         display: block;
-        font:
-          700 clamp(26px, 4vw, 42px) / 0.95 "Rajdhani",
-          sans-serif;
-        text-transform: uppercase;
-        margin-bottom: 12px;
+        font-family: var(--font-head);
+        font-weight: 800;
+        font-size: 20px;
+        line-height: 1;
+        color: var(--ice);
+        margin-bottom: 4px;
       }
 
-      .signal-panel p {
+      .highlight-box .lbl {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 11px;
         color: var(--muted);
-        line-height: 1.6;
-        margin-bottom: 0;
+        text-transform: uppercase;
       }
 
+      /* Hero Visual Card */
+      .hero-card {
+        border: 1px solid var(--line-hot);
+        background: #080b14;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow:
+          var(--shadow-xl),
+          0 0 45px rgba(255, 59, 48, 0.18);
+        transition:
+          transform 300ms ease,
+          box-shadow 300ms ease;
+      }
+
+      .hero-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          var(--shadow-xl),
+          0 0 60px rgba(0, 240, 255, 0.3);
+        border-color: var(--ice);
+      }
+
+      .hero-card-media {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+      }
+
+      .hero-card-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-card-footer {
+        padding: 20px 22px;
+        background: rgba(6, 9, 18, 0.94);
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      /* Section Common */
       section {
-        padding: clamp(58px, 8vw, 108px) 0;
+        padding: clamp(60px, 8vw, 110px) 0;
+        position: relative;
       }
 
       .section-head {
         display: flex;
         justify-content: space-between;
-        gap: 24px;
-        align-items: end;
-        margin-bottom: clamp(26px, 4vw, 44px);
+        align-items: flex-end;
+        gap: 28px;
+        margin-bottom: clamp(32px, 5vw, 54px);
       }
 
       .section-head h2 {
-        font:
-          800 clamp(34px, 6vw, 70px) / 0.92 "Rajdhani",
-          sans-serif;
-        text-transform: uppercase;
-        max-width: 700px;
+        font-size: clamp(34px, 5.5vw, 68px);
         margin-bottom: 0;
       }
 
       .section-head p {
         color: var(--muted);
-        line-height: 1.65;
-        max-width: 430px;
+        font-size: 16px;
+        max-width: 480px;
         margin-bottom: 0;
+        line-height: 1.6;
       }
 
-      .featured-game {
+      /* Overview Showcase */
+      .overview-grid {
         display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-        gap: clamp(22px, 4vw, 44px);
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        gap: clamp(24px, 4vw, 48px);
         align-items: stretch;
       }
 
-      .game-art {
+      .overview-art {
         position: relative;
-        min-height: 520px;
         border: 1px solid var(--line-hot);
-        background: #090b11;
+        background: #070a12;
+        border-radius: var(--radius-md);
         overflow: hidden;
-        box-shadow: var(--shadow);
+        min-height: 440px;
+        box-shadow: var(--shadow-xl);
       }
 
-      .game-art img {
+      .overview-art img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center;
       }
 
-      .game-art::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(0deg, rgba(5, 6, 10, 0.6), transparent 46%);
-      }
-
-      .game-info {
-        border: 1px solid var(--line);
-        background: var(--panel);
-        padding: clamp(24px, 4vw, 42px);
-        display: grid;
-        align-content: center;
-        box-shadow: var(--shadow);
-      }
-
-      .status-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 20px;
-      }
-
-      .tag {
-        border: 1px solid rgba(114, 231, 255, 0.28);
-        background: rgba(114, 231, 255, 0.06);
-        color: #c8f6ff;
-        padding: 8px 10px;
-        font:
-          700 12px/1 "Rajdhani",
-          sans-serif;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .game-info h3 {
-        font:
-          800 clamp(36px, 6vw, 68px) / 0.92 "Rajdhani",
-          sans-serif;
-        text-transform: uppercase;
-        margin-bottom: 18px;
-      }
-
-      .game-info p {
-        color: #d3deea;
-        line-height: 1.7;
-        font-size: 17px;
-      }
-
-      .spec-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
-        background: var(--line);
-        border: 1px solid var(--line);
-        margin: 24px 0;
-      }
-
-      .spec {
-        background: rgba(5, 6, 10, 0.74);
-        padding: 16px 14px;
-      }
-
-      .spec span {
-        display: block;
-        color: var(--muted);
-        font-size: 12px;
-        margin-bottom: 4px;
-      }
-
-      .spec strong {
-        font:
-          700 16px/1.15 "Rajdhani",
-          sans-serif;
-        text-transform: uppercase;
-      }
-
-      .library-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
-      }
-
-      .game-card {
-        position: relative;
-        min-height: 340px;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        background: var(--panel-strong);
-        display: grid;
-        align-content: end;
-        padding: 22px;
-      }
-
-      .game-card img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.6;
-        transition:
-          transform 380ms ease,
-          opacity 380ms ease;
-      }
-
-      .game-card::after {
-        content: "";
+      .overview-art-overlay {
         position: absolute;
         inset: 0;
         background: linear-gradient(
           0deg,
-          rgba(5, 6, 10, 0.96),
-          rgba(5, 6, 10, 0.18)
+          rgba(5, 7, 13, 0.92) 0%,
+          rgba(5, 7, 13, 0.2) 60%,
+          transparent 100%
         );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 28px;
       }
 
-      .game-card:hover img,
-      .game-card:focus-within img {
-        transform: scale(1.05);
-        opacity: 0.82;
-      }
-
-      .game-card-content {
-        position: relative;
-        z-index: 1;
-      }
-
-      .game-card h3 {
-        font:
-          800 30px/0.94 "Rajdhani",
-          sans-serif;
-        text-transform: uppercase;
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
         margin-bottom: 10px;
       }
 
-      .game-card p {
-        color: var(--muted);
-        line-height: 1.55;
-        margin-bottom: 18px;
-      }
-
-      .soon {
-        border-style: dashed;
-        background:
-          linear-gradient(135deg, rgba(114, 231, 255, 0.08), transparent),
-          rgba(9, 12, 20, 0.72);
-      }
-
-      .guide-band {
-        position: relative;
-        overflow: hidden;
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        background:
-          linear-gradient(115deg, rgba(114, 231, 255, 0.08), transparent 42%),
-          linear-gradient(285deg, rgba(255, 68, 60, 0.08), transparent 38%),
-          rgba(7, 10, 17, 0.88);
-      }
-
-      .guide-band::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: repeating-linear-gradient(
-          90deg,
-          transparent 0 79px,
-          rgba(255, 255, 255, 0.025) 80px
-        );
-      }
-
-      .guide-layout {
-        position: relative;
-        display: grid;
-        grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
-        gap: clamp(36px, 7vw, 92px);
-        align-items: center;
-      }
-
-      .guide-intro h2 {
-        font:
-          800 clamp(44px, 7vw, 86px) / 0.88 "Rajdhani",
-          sans-serif;
+      .badge {
+        padding: 4px 9px;
+        background: rgba(0, 240, 255, 0.08);
+        border: 1px solid var(--ice);
+        color: #d8f8ff;
+        font-family: var(--font-head);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        margin-bottom: 20px;
+        border-radius: 2px;
       }
 
-      .guide-intro > p:last-of-type {
-        max-width: 430px;
-        color: #d4deea;
-        font-size: 18px;
+      .badge.red {
+        background: rgba(255, 59, 48, 0.1);
+        border-color: var(--ember);
+        color: #ffe6e5;
+      }
+
+      .overview-info {
+        border: 1px solid var(--line);
+        background: var(--panel-card);
+        padding: clamp(28px, 4vw, 44px);
+        border-radius: var(--radius-md);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: var(--shadow-xl);
+      }
+
+      .overview-info h3 {
+        font-size: clamp(32px, 4.5vw, 52px);
+        margin-bottom: 14px;
+      }
+
+      .overview-info p {
+        color: #c9d7e7;
+        font-size: 16px;
         line-height: 1.65;
+        margin-bottom: 22px;
       }
 
-      .guide-platform {
-        display: inline-flex;
-        align-items: center;
-        gap: 9px;
-        margin-top: 10px;
-        color: var(--green);
-        font:
-          700 12px/1 "Rajdhani",
-          sans-serif;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-
-      .guide-platform::before {
-        content: "";
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--green);
-        box-shadow: 0 0 14px var(--green);
-      }
-
-      .control-steps {
-        position: relative;
+      .specs-row {
         display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 1px;
         background: var(--line);
         border: 1px solid var(--line);
-        box-shadow: var(--shadow);
-      }
-
-      .control-step {
-        --step-color: var(--ice);
-        position: relative;
-        min-height: 128px;
-        display: grid;
-        grid-template-columns: 58px 88px minmax(0, 1fr);
-        align-items: center;
-        gap: 18px;
-        padding: 22px 26px;
-        background: rgba(7, 10, 17, 0.94);
+        margin-bottom: 26px;
+        border-radius: var(--radius-sm);
         overflow: hidden;
       }
 
-      .control-step::after {
-        content: "";
-        position: absolute;
-        inset: 0 auto 0 0;
-        width: 3px;
-        background: var(--step-color);
-        box-shadow: 0 0 20px var(--step-color);
+      .spec-item {
+        background: rgba(7, 10, 18, 0.9);
+        padding: 14px 12px;
       }
 
-      .control-step:nth-child(2) {
-        --step-color: var(--amber);
-      }
-
-      .control-step:nth-child(3) {
-        --step-color: var(--ember);
-      }
-
-      .step-number {
-        color: var(--step-color);
-        font:
-          700 14px/1 "Rajdhani",
-          sans-serif;
-        letter-spacing: 0.12em;
-      }
-
-      .touch-demo {
-        position: relative;
-        width: 74px;
-        height: 74px;
-        display: grid;
-        place-items: center;
-      }
-
-      .touch-ring,
-      .touch-core {
-        position: absolute;
-        border-radius: 50%;
-      }
-
-      .touch-ring {
-        width: 52px;
-        height: 52px;
-        border: 1px solid var(--step-color);
-        opacity: 0.58;
-      }
-
-      .touch-core {
-        width: 18px;
-        height: 18px;
-        border: 2px solid var(--step-color);
-        background: rgba(5, 6, 10, 0.88);
-        box-shadow: 0 0 18px var(--step-color);
-      }
-
-      .touch-arrow {
-        position: absolute;
-        width: 54px;
-        height: 1px;
-        background: linear-gradient(90deg, var(--step-color), transparent);
-        transform: translateX(25px) rotate(-25deg);
-        transform-origin: left;
-      }
-
-      .touch-arrow::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: -3px;
-        width: 7px;
-        height: 7px;
-        border-top: 1px solid var(--step-color);
-        border-right: 1px solid var(--step-color);
-        transform: rotate(45deg);
-      }
-
-      .control-step:nth-child(2) .touch-ring {
-        width: 64px;
-        height: 64px;
-        box-shadow: inset 0 0 22px rgba(255, 208, 106, 0.24);
-      }
-
-      .control-step:nth-child(2) .touch-arrow {
-        display: none;
-      }
-
-      .control-step:nth-child(3) .touch-ring {
-        border-style: dashed;
-      }
-
-      .control-step:nth-child(3) .touch-arrow {
-        width: 42px;
-        transform: translateX(-21px) rotate(145deg);
-      }
-
-      .step-copy h3 {
-        margin-bottom: 5px;
-        color: #fff;
-        font:
-          800 27px/1 "Rajdhani",
-          sans-serif;
+      .spec-item span {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 3px;
         text-transform: uppercase;
       }
 
-      .step-copy p {
-        color: var(--muted);
-        line-height: 1.5;
-        margin-bottom: 0;
+      .spec-item strong {
+        font-family: var(--font-head);
+        font-size: 16px;
+        color: var(--text-bright);
       }
 
-      .studio-band {
+      /* Controls & Abilities */
+      .controls-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+
+      .control-card {
+        border: 1px solid var(--line);
+        background: var(--panel-card);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 220ms ease,
+          border-color 220ms ease;
+        box-shadow: var(--shadow-xl);
+      }
+
+      .control-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--ice);
+        background: var(--panel-card-hover);
+      }
+
+      .control-media {
+        width: 100%;
+        height: 190px;
+        background: #020306;
+        overflow: hidden;
+      }
+
+      .control-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .control-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
+      }
+
+      .control-body h3 {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .control-body p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+        margin-bottom: 12px;
+      }
+
+      .control-tag {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--ice);
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* Maps / Sectors */
+      .sectors-band {
+        background: linear-gradient(
+          180deg,
+          rgba(8, 12, 22, 0.85) 0%,
+          rgba(5, 7, 13, 0.95) 100%
+        );
         border-top: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
-        background:
-          linear-gradient(90deg, rgba(255, 68, 60, 0.1), transparent),
-          rgba(255, 255, 255, 0.025);
       }
 
-      .studio-grid {
+      .sector-layout {
         display: grid;
-        grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
-        gap: clamp(28px, 5vw, 72px);
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .sector-tabs {
+        display: grid;
+        gap: 8px;
+        align-content: start;
+      }
+
+      .sector-btn {
+        background: rgba(14, 21, 38, 0.6);
+        border: 1px solid var(--line);
+        color: var(--muted);
+        padding: 14px 18px;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
+        border-radius: var(--radius-sm);
+        transition: all 180ms ease;
+        font-family: var(--font-head);
       }
 
-      .studio-grid h2 {
-        font:
-          800 clamp(34px, 6vw, 74px) / 0.92 "Rajdhani",
-          sans-serif;
+      .sector-btn:hover {
+        background: rgba(0, 240, 255, 0.08);
+        border-color: var(--ice);
+        color: var(--text-bright);
+      }
+
+      .sector-btn.active {
+        background: linear-gradient(
+          90deg,
+          rgba(0, 240, 255, 0.16),
+          rgba(14, 21, 38, 0.95)
+        );
+        border-color: var(--ice);
+        color: var(--text-bright);
+        box-shadow: inset 3px 0 0 var(--ice);
+      }
+
+      .sector-btn .name {
+        font-size: 17px;
+        font-weight: 700;
         text-transform: uppercase;
-        margin-bottom: 18px;
+        letter-spacing: 0.05em;
       }
 
-      .studio-grid p {
-        color: #d4deea;
-        font-size: 18px;
-        line-height: 1.72;
+      .sector-btn .badge-pill {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        padding: 2px 6px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 2px;
       }
 
-      .principles {
+      .sector-stage {
+        border: 1px solid var(--line);
+        background: var(--panel-solid);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: 340px auto;
+        box-shadow: var(--shadow-xl);
+      }
+
+      .sector-stage-art {
+        position: relative;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .sector-stage-art img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 300ms ease;
+      }
+
+      .sector-stage-art::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 45%,
+          rgba(13, 20, 36, 1) 100%
+        );
+      }
+
+      .sector-stage-details {
+        padding: 26px 28px;
+        background: rgba(13, 20, 36, 0.98);
         display: grid;
         gap: 12px;
       }
 
-      .principle {
-        border-left: 3px solid var(--ember);
-        background: rgba(5, 6, 10, 0.48);
-        padding: 18px 20px;
+      .sector-stage-details h3 {
+        font-size: clamp(26px, 3.5vw, 40px);
+        margin-bottom: 0;
       }
 
-      .principle strong {
-        display: block;
-        font:
-          700 22px/1 "Rajdhani",
-          sans-serif;
-        text-transform: uppercase;
-        margin-bottom: 6px;
+      .sector-stage-details p {
+        color: #c4d3e4;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 0;
       }
 
-      .principle span {
+      /* Modes */
+      .modes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .mode-card {
+        position: relative;
+        border: 1px solid var(--line);
+        background: var(--panel-card);
+        padding: 30px 26px;
+        border-radius: var(--radius-md);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .mode-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--ember), var(--ice));
+        opacity: 0.7;
+      }
+
+      .mode-tag {
+        font-family: var(--font-mono);
+        color: var(--ice);
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+
+      .mode-card h3 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .mode-card p {
         color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      /* Studio */
+      .studio-band {
+        background: linear-gradient(
+          180deg,
+          rgba(9, 13, 24, 0.8) 0%,
+          rgba(5, 7, 13, 0.95) 100%
+        );
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .studio-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+        gap: clamp(28px, 5vw, 64px);
+        align-items: center;
+      }
+
+      .studio-grid h2 {
+        font-size: clamp(34px, 5vw, 64px);
+        margin-bottom: 18px;
+      }
+
+      .studio-grid p {
+        color: #d1deec;
+        font-size: 17px;
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+
+      .principles-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .principle-item {
+        border-left: 3px solid var(--ember);
+        background: rgba(11, 17, 30, 0.85);
+        border-top: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 20px 22px;
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      }
+
+      .principle-item:nth-child(2) {
+        border-left-color: var(--amber);
+      }
+
+      .principle-item:nth-child(3) {
+        border-left-color: var(--ice);
+      }
+
+      .principle-item strong {
+        display: block;
+        font-family: var(--font-head);
+        font-size: 20px;
+        text-transform: uppercase;
+        color: var(--text-bright);
+        margin-bottom: 4px;
+      }
+
+      .principle-item span {
+        color: var(--muted);
+        font-size: 14px;
         line-height: 1.55;
       }
 
+      /* FAQ */
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .faq-card {
+        border: 1px solid var(--line);
+        background: var(--panel-card);
+        padding: 22px;
+        border-radius: var(--radius-sm);
+      }
+
+      .faq-card h3 {
+        font-size: 19px;
+        margin-bottom: 8px;
+        color: var(--ice);
+      }
+
+      .faq-card p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      /* Contact Strip */
       .contact-strip {
+        border: 1px solid var(--line);
+        background:
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(0, 240, 255, 0.1),
+            transparent 35rem
+          ),
+          radial-gradient(
+            circle at 15% 80%,
+            rgba(255, 59, 48, 0.08),
+            transparent 25rem
+          ),
+          rgba(11, 17, 31, 0.94);
+        padding: clamp(32px, 5vw, 56px);
+        border-radius: var(--radius-lg);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 24px;
-        border: 1px solid var(--line);
-        background: linear-gradient(
-          135deg,
-          rgba(14, 20, 35, 0.9),
-          rgba(8, 10, 16, 0.82)
-        );
-        box-shadow: var(--shadow);
-        padding: clamp(24px, 5vw, 44px);
+        gap: 28px;
+        box-shadow: var(--shadow-xl);
       }
 
       .contact-strip h2 {
-        font:
-          800 clamp(32px, 5vw, 58px) / 0.95 "Rajdhani",
-          sans-serif;
-        text-transform: uppercase;
+        font-size: clamp(30px, 4.5vw, 54px);
         margin-bottom: 10px;
       }
 
       .contact-strip p {
-        color: var(--muted);
-        margin-bottom: 0;
+        color: #cad7e7;
+        font-size: 16px;
         line-height: 1.6;
-        max-width: 620px;
+        max-width: 540px;
+        margin-bottom: 0;
       }
 
+      .contact-right {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 240px;
+      }
+
+      .email-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px dashed var(--line);
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 12px;
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+        transition: all 180ms ease;
+      }
+
+      .email-pill:hover {
+        border-color: var(--ice);
+        color: var(--text-bright);
+      }
+
+      /* Toast */
+      #toast-message {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        padding: 12px 18px;
+        background: var(--panel-solid);
+        border: 1px solid var(--ice);
+        color: var(--text-bright);
+        font-family: var(--font-mono);
+        font-size: 13px;
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.8),
+          0 0 20px var(--ice-glow);
+        border-radius: var(--radius-sm);
+        transform: translateY(100px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 260ms ease;
+        z-index: 1000;
+      }
+
+      #toast-message.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Footer */
       .site-footer {
-        padding: 32px 0 44px;
-        color: #8794a6;
+        padding: 36px 0 48px;
         border-top: 1px solid var(--line);
+        background: #020306;
+        color: var(--muted);
+        font-size: 14px;
       }
 
       .footer-inner {
         display: flex;
         justify-content: space-between;
-        gap: 18px;
+        align-items: center;
+        gap: 20px;
         flex-wrap: wrap;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 18px;
+        font-family: var(--font-head);
+        font-weight: 700;
         font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
       }
 
-      .footer-inner a {
-        color: #b8eaff;
+      .footer-links a:hover {
+        color: var(--ice);
       }
 
-      @keyframes slow-drift {
-        from {
-          transform: scale(1.02) translate3d(0, 0, 0);
-        }
-        to {
-          transform: scale(1.08) translate3d(1.5%, -1%, 0);
-        }
-      }
-
-      @media (max-width: 980px) {
-        .hero-content,
-        .featured-game,
+      /* Responsive Breakpoints */
+      @media (max-width: 960px) {
+        .hero-layout,
+        .overview-grid,
+        .sector-layout,
         .studio-grid,
-        .guide-layout {
-          grid-template-columns: 1fr;
+        .contact-strip {
+          grid-template-columns: minmax(0, 1fr);
+          flex-direction: column;
+          align-items: stretch;
         }
 
-        .signal-panel {
-          max-width: 520px;
+        .hero-layout > *,
+        .overview-grid > *,
+        .sector-layout > *,
+        .studio-grid > *,
+        .contact-strip > * {
+          min-width: 0;
         }
 
-        .library-grid {
+        .controls-grid {
           grid-template-columns: repeat(2, 1fr);
         }
 
-        .guide-intro > p:last-of-type {
-          max-width: 620px;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .page-shell {
-          width: min(100% - 28px, 1180px);
-        }
-
-        .site-header {
-          position: sticky;
-          background: rgba(5, 6, 10, 0.9);
-        }
-
-        .nav {
-          min-height: auto;
-          padding: 10px 0 12px;
-          gap: 10px;
-          flex-direction: column;
-        }
-
-        .brand {
-          width: 100%;
-        }
-
-        .brand-mark {
-          width: 36px;
-          height: 36px;
-          font-size: 16px;
-        }
-
-        .brand-name strong {
-          font-size: 16px;
-        }
-
-        .nav-links {
-          width: 100%;
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 6px;
-          font-size: 11px;
-          letter-spacing: 0.08em;
-        }
-
-        .nav-links a {
-          min-height: 34px;
-          display: grid;
-          place-items: center;
-          border: 1px solid rgba(149, 197, 255, 0.16);
-          background: rgba(255, 255, 255, 0.035);
-          padding: 0 4px;
-        }
-
-        .nav-links a::after {
-          display: none;
-        }
-
-        .hero {
-          min-height: 0;
-          display: block;
-        }
-
-        .hero-media {
-          position: relative;
-          inset: auto;
-          z-index: 0;
-          height: clamp(210px, 58vw, 320px);
-          border-bottom: 1px solid rgba(255, 68, 60, 0.28);
-          background: #030407;
-        }
-
-        .hero-media img {
-          object-fit: cover;
-          object-position: center top;
-          animation: none;
-          transform: none;
-        }
-
-        .hero-content {
-          position: relative;
-          z-index: 1;
-          gap: 18px;
-          padding: 26px 0 42px;
-        }
-
-        .hero::after {
-          z-index: 0;
-          pointer-events: none;
-          background:
-            linear-gradient(
-              180deg,
-              transparent 0 30%,
-              rgba(5, 6, 10, 0.74) 42%,
-              rgba(5, 6, 10, 1) 58%
-            ),
-            linear-gradient(90deg, rgba(5, 6, 10, 0.18), rgba(5, 6, 10, 0.08));
-        }
-
-        .kicker {
-          font-size: 12px;
-          letter-spacing: 0.18em;
-          margin-bottom: 10px;
-        }
-
-        h1 {
-          font-size: clamp(48px, 14vw, 72px);
-          line-height: 0.9;
-          margin-bottom: 14px;
-        }
-
-        .hero-copy {
-          font-size: 16px;
-          line-height: 1.5;
-          margin-bottom: 18px;
-        }
-
-        .hero-actions {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 8px;
-        }
-
-        .hero-actions .button {
-          width: auto;
-          min-height: 44px;
-          padding: 0 10px;
-          font-size: 11px;
-          letter-spacing: 0.07em;
-        }
-
-        .signal-panel {
-          display: none;
-        }
-
-        section {
-          padding: 48px 0;
-        }
-
-        .section-head {
-          gap: 12px;
-          margin-bottom: 22px;
-        }
-
-        .section-head h2,
-        .studio-grid h2,
-        .contact-strip h2,
-        .guide-intro h2 {
-          font-size: clamp(34px, 10vw, 50px);
-          line-height: 0.96;
-        }
-
-        .section-head p,
-        .studio-grid p,
-        .contact-strip p,
-        .game-info p {
-          font-size: 15px;
-          line-height: 1.58;
-        }
-
-        .section-head,
-        .contact-strip {
-          display: grid;
-        }
-
-        .game-art {
-          min-height: 0;
-          aspect-ratio: 1 / 1;
-        }
-
-        .game-info {
-          padding: 20px;
-        }
-
-        .game-info h3 {
-          font-size: clamp(36px, 11vw, 54px);
-        }
-
-        .status-row {
-          gap: 7px;
-          margin-bottom: 16px;
-        }
-
-        .tag {
-          padding: 7px 8px;
-          font-size: 11px;
-          letter-spacing: 0.08em;
-        }
-
-        .library-grid {
+        .modes-grid {
           grid-template-columns: 1fr;
         }
 
-        .spec-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          margin: 18px 0;
+        .faq-grid {
+          grid-template-columns: 1fr;
         }
 
-        .spec {
-          padding: 12px 8px;
-        }
-
-        .spec strong {
-          font-size: 13px;
-        }
-
-        .game-card {
-          min-height: 260px;
-          padding: 18px;
-        }
-
-        .game-card h3 {
-          font-size: 28px;
-        }
-
-        .guide-layout {
-          gap: 26px;
-        }
-
-        .guide-intro > p:last-of-type {
-          font-size: 15px;
-          line-height: 1.58;
-        }
-
-        .control-step {
-          min-height: 112px;
-          grid-template-columns: 34px 66px minmax(0, 1fr);
-          gap: 10px;
-          padding: 18px 14px;
-        }
-
-        .touch-demo {
-          width: 58px;
-          height: 64px;
-          transform: scale(0.82);
-        }
-
-        .step-copy h3 {
-          font-size: 23px;
-        }
-
-        .step-copy p {
-          font-size: 14px;
-        }
-
-        .principle {
-          padding: 16px;
-        }
-
-        .contact-strip {
-          padding: 20px;
+        .hero-highlights {
+          grid-template-columns: repeat(2, 1fr);
         }
       }
 
-      @media (max-width: 440px) {
-        .brand-name span {
+      @media (max-width: 840px) {
+        .desktop-links {
           display: none;
         }
 
-        .hero-actions {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+        .menu-toggle-btn {
+          display: inline-flex;
         }
 
-        .button {
+        .header-right .button {
+          display: none;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .page-shell {
+          width: calc(100% - 28px);
+        }
+
+        .controls-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .specs-row {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .spec-item strong {
+          font-size: 13px;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+        }
+
+        .hero-buttons .button {
           width: 100%;
         }
 
-        .hero-actions .button {
-          width: auto;
-        }
-
-        .hero-media {
-          height: 210px;
-        }
-
-        h1 {
-          font-size: 48px;
-        }
-
-        .game-card {
-          min-height: 240px;
-        }
-
-        .control-step {
-          grid-template-columns: 28px 52px minmax(0, 1fr);
-          padding-inline: 10px;
-        }
-
-        .step-number {
-          font-size: 12px;
-        }
-
-        .touch-demo {
-          transform: scale(0.72);
-          transform-origin: center;
+        .contact-right {
+          width: 100%;
         }
       }
 
@@ -1227,235 +1316,833 @@
         *::after {
           animation-duration: 0.01ms !important;
           animation-iteration-count: 1 !important;
-          scroll-behavior: auto !important;
           transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
         }
       }
     </style>
   </head>
   <body>
+    <!-- Live Starfield Background -->
+    <canvas id="starfield-canvas"></canvas>
+    <div class="bg-vignette"></div>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation Header -->
     <header class="site-header">
-      <nav class="nav page-shell" aria-label="Primary navigation">
+      <div class="nav-container page-shell">
         <a class="brand" href="#top" aria-label="Faraz Studio home">
-          <span class="brand-mark"
-            ><img src="logo-nobackground.png" alt=""
-          /></span>
-          <span class="brand-name">
+          <span class="brand-mark">
+            <img src="logo.png" alt="Faraz Studio logo" />
+          </span>
+          <span class="brand-text">
             <strong>Faraz Studio</strong>
-            <span>Independent single developer game studio</span>
+            <span>INDEPENDENT GAME DEVELOPER</span>
           </span>
         </a>
-        <div class="nav-links" aria-label="Page sections">
-          <a href="#games">Games</a>
-          <a href="#guide">Guide</a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="desktop-links" aria-label="Main navigation">
+          <a href="#overview">Game</a>
+          <a href="#controls">Controls</a>
+          <a href="#sectors">Maps</a>
+          <a href="#modes">Modes</a>
           <a href="#studio">Studio</a>
+          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
-          <a href="privacy-policy.html">Privacy</a>
+        </nav>
+
+        <div class="header-right">
+          <a
+            class="button cyan"
+            href="https://play.google.com/store/apps/details?id=com.farizad.abrax_protocol&pcampaignid=web_share"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg class="button-icon" viewBox="0 0 24 24">
+              <path
+                d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L18.81,14C20.4,13.08 20.4,10.92 18.81,10L16.81,8.88L14.4,11.29L16.81,15.12M4.25,22.27L14.11,12.41L16.1,14.41L5.66,22.69C5.18,22.97 4.67,22.75 4.25,22.27M4.25,1.73C4.67,1.25 5.18,1.03 5.66,1.31L16.1,9.59L14.11,11.59L4.25,1.73Z"
+              />
+            </svg>
+            <span>Play Store</span>
+          </a>
+
+          <!-- Hamburger Button for Mobile -->
+          <button
+            id="mobile-menu-btn"
+            class="menu-toggle-btn"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+          >
+            <svg id="hamburger-icon" viewBox="0 0 24 24">
+              <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+            </svg>
+            <svg id="close-icon" viewBox="0 0 24 24" style="display: none">
+              <path
+                d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+              />
+            </svg>
+          </button>
         </div>
-      </nav>
+      </div>
     </header>
 
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-drawer" class="mobile-menu-drawer" aria-hidden="true">
+      <nav class="mobile-menu-links">
+        <a href="#overview" class="mobile-link">Game</a>
+        <a href="#controls" class="mobile-link">Controls</a>
+        <a href="#sectors" class="mobile-link">Maps</a>
+        <a href="#modes" class="mobile-link">Modes</a>
+        <a href="#studio" class="mobile-link">Studio</a>
+        <a href="#faq" class="mobile-link">FAQ</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+        <a href="privacy-policy.html" class="mobile-link">Privacy Policy</a>
+      </nav>
+
+      <div class="mobile-cta-row">
+        <a
+          class="button primary"
+          href="https://play.google.com/store/apps/details?id=com.farizad.abrax_protocol&pcampaignid=web_share"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg class="button-icon" viewBox="0 0 24 24">
+            <path
+              d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L18.81,14C20.4,13.08 20.4,10.92 18.81,10L16.81,8.88L14.4,11.29L16.81,15.12M4.25,22.27L14.11,12.41L16.1,14.41L5.66,22.69C5.18,22.97 4.67,22.75 4.25,22.27M4.25,1.73C4.67,1.25 5.18,1.03 5.66,1.31L16.1,9.59L14.11,11.59L4.25,1.73Z"
+            />
+          </svg>
+          <span>Download on Google Play</span>
+        </a>
+      </div>
+    </div>
+
     <main id="top">
+      <!-- Hero Section -->
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-media" aria-hidden="true">
-          <img src="newgame.png" alt="Abrax Protocol key art" />
-        </div>
-        <div class="hero-content page-shell">
+        <div class="hero-layout page-shell">
           <div>
-            <p class="kicker">Games from Faraz Studio</p>
-            <h1 id="hero-title">Abrax Protocol</h1>
-            <p class="hero-copy">
-              Dodge and survive, fighting hostile enemies in a cinematic
-              universe built for speed, spectacle, and replayable pressure.
+            <div class="hero-badge">
+              <span class="pulse-dot"></span>
+              <span>NOW AVAILABLE ON GOOGLE PLAY</span>
+            </div>
+            <p class="kicker">Fast Space Action</p>
+            <h1 id="hero-title" class="hero-title">
+              Abrax <span class="text-ember">Protocol</span>
+            </h1>
+            <p class="hero-desc">
+              Dodge hostile bullet storms, slow down time, and survive
+              high-intensity space combat in a fast-paced game built for touch.
             </p>
-            <div class="hero-actions">
-              <!-- UPDATE LATER: replace #games with your Google Play link when the store page is live. -->
-              <a class="button primary" href="#games">Explore the Game</a>
-              <a class="button" href="#contact">Work With Us</a>
+            <div class="hero-buttons">
+              <a
+                class="button primary"
+                href="https://play.google.com/store/apps/details?id=com.farizad.abrax_protocol&pcampaignid=web_share"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="button-icon" viewBox="0 0 24 24">
+                  <path
+                    d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L18.81,14C20.4,13.08 20.4,10.92 18.81,10L16.81,8.88L14.4,11.29L16.81,15.12M4.25,22.27L14.11,12.41L16.1,14.41L5.66,22.69C5.18,22.97 4.67,22.75 4.25,22.27M4.25,1.73C4.67,1.25 5.18,1.03 5.66,1.31L16.1,9.59L14.11,11.59L4.25,1.73Z"
+                  />
+                </svg>
+                <span>Download Free</span>
+              </a>
+              <a class="button" href="#controls">
+                <span>How to Play</span>
+              </a>
+              <a class="button" href="#sectors">
+                <span>View Maps</span>
+              </a>
+            </div>
+
+            <div class="hero-highlights" aria-label="Key Features">
+              <div class="highlight-box">
+                <span class="val">120 FPS</span>
+                <span class="lbl">Smooth Play</span>
+              </div>
+              <div class="highlight-box">
+                <span class="val">0 ADS</span>
+                <span class="lbl">No Annoying Ads</span>
+              </div>
+              <div class="highlight-box">
+                <span class="val">15</span>
+                <span class="lbl">Unique Maps</span>
+              </div>
+              <div class="highlight-box">
+                <span class="val">OFFLINE</span>
+                <span class="lbl">Play Anywhere</span>
+              </div>
             </div>
           </div>
-          <aside class="signal-panel" aria-label="Studio signal">
-            <div class="label">Now featured</div>
-            <strong>More hostile enemies, more intense gameplay.</strong>
-            <p>
-              We are eagerly working on the next update for Abrax Protocol, and
-              we want to keep you in the loop. Just wait and see what we can do.
-            </p>
-          </aside>
+
+          <!-- Hero Image Card -->
+          <div class="hero-card">
+            <div class="hero-card-media">
+              <img src="newgame.jpeg" alt="Abrax Protocol in-game starship" />
+            </div>
+            <div class="hero-card-footer">
+              <span style="color: var(--ice)">ABRAX PROTOCOL</span>
+              <span style="color: var(--green)">READY ON ANDROID</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="games" class="page-shell" aria-labelledby="games-title">
+      <!-- Overview Section -->
+      <section
+        id="overview"
+        class="page-shell"
+        aria-labelledby="overview-title"
+      >
         <div class="section-head">
-          <h2 id="games-title">Games that keep players coming back for more</h2>
+          <div>
+            <p class="kicker">About the Game</p>
+            <h2 id="overview-title">Fast, punchy, and addictive</h2>
+          </div>
           <p>
-            We as Faraz Studio focus on punchy, atmospheric games that are easy
-            to pick up, but hard to put down. The goal is to make every single
-            second you play our games enjoyable and make you addicted to the
-            experience we offer.
+            Built from scratch for responsive mobile touch controls. Easy to
+            pick up, challenging to master, with zero forced ads interrupting
+            your runs.
           </p>
         </div>
 
-        <article class="featured-game">
-          <div class="game-art">
-            <img
-              src="abrax-protocol.png"
-              alt="Abrax Protocol key art with a starship in front of a molten planet"
-            />
-          </div>
-          <div class="game-info">
-            <div class="status-row">
-              <span class="tag">Featured Release</span>
-              <span class="tag">Android</span>
-              <span class="tag">Sci-fi</span>
+        <div class="overview-grid">
+          <div class="overview-art">
+            <img src="abrax-protocol.png" alt="Abrax Protocol key art" />
+            <div class="overview-art-overlay">
+              <div class="badge-row">
+                <span class="badge">Android</span>
+                <span class="badge">Arcade / Action</span>
+                <span class="badge red">Free Download</span>
+              </div>
+              <h3 style="font-size: 30px; margin-bottom: 4px">
+                ABRAX PROTOCOL
+              </h3>
+              <p style="color: var(--muted); font-size: 14px; margin-bottom: 0">
+                Available on Google Play
+              </p>
             </div>
-            <h3>Abrax Protocol</h3>
-            <p>
-              A high-intensity space combat experience across survival, time
-              trial, and boss-focused modes. Built around fast reads, stylish
-              impacts, unlockable routes, and a world that looks massive even on
-              a small screen.
-            </p>
-            <div class="spec-grid" aria-label="Abrax Protocol details">
-              <div class="spec">
-                <span>Genre</span>
-                <strong>Action Arcade</strong>
-              </div>
-              <div class="spec">
-                <span>Platform</span>
-                <strong>Android</strong>
-              </div>
-              <div class="spec">
-                <span>Status</span>
-                <strong>Active</strong>
+          </div>
+
+          <div class="overview-info">
+            <div>
+              <p class="kicker" style="color: var(--amber)">Gameplay</p>
+              <h3>One Finger. Stay Alive.</h3>
+              <p>
+                Your ship follows your finger smoothly across the screen. Dodge
+                enemy bullet patterns, hold down your touch to slow down time
+                when things get chaotic, and trigger Nova Bombs to clear the
+                screen and earn shards.
+              </p>
+
+              <div class="specs-row" aria-label="Game Specs">
+                <div class="spec-item">
+                  <span>Platform</span>
+                  <strong>Android 8.0+</strong>
+                </div>
+                <div class="spec-item">
+                  <span>Refresh Rate</span>
+                  <strong>60 / 120 Hz</strong>
+                </div>
+                <div class="spec-item">
+                  <span>Size</span>
+                  <strong>~52 MB</strong>
+                </div>
               </div>
             </div>
-            <!-- UPDATE LATER: put your real Google Play URL in this href. Example: href="https://play.google.com/store/apps/details?id=your.package.name" -->
-            <a class="button primary" href="#contact">Get Launch Updates</a>
-          </div>
-        </article>
-      </section>
 
-      <section id="guide" class="guide-band" aria-labelledby="guide-title">
-        <div class="guide-layout page-shell">
-          <div class="guide-intro">
-            <p class="kicker">Field briefing / Android controls</p>
-            <h2 id="guide-title">One finger. Stay alive.</h2>
-            <p>
-              Your ship follows your touch. Keep moving, control time, and slip
-              through the attack.
-            </p>
-            <span class="guide-platform">Built for touch</span>
-          </div>
-
-          <div class="control-steps" aria-label="Basic game controls">
-            <article class="control-step">
-              <span class="step-number">01</span>
-              <div class="touch-demo" aria-hidden="true">
-                <span class="touch-ring"></span>
-                <span class="touch-core"></span>
-                <span class="touch-arrow"></span>
-              </div>
-              <div class="step-copy">
-                <h3>Touch &amp; drag</h3>
-                <p>Slide anywhere. Your ship follows your finger.</p>
-              </div>
-            </article>
-
-            <article class="control-step">
-              <span class="step-number">02</span>
-              <div class="touch-demo" aria-hidden="true">
-                <span class="touch-ring"></span>
-                <span class="touch-core"></span>
-                <span class="touch-arrow"></span>
-              </div>
-              <div class="step-copy">
-                <h3>Hold to freeze</h3>
-                <p>Keep your finger down to slow time. Watch your energy.</p>
-              </div>
-            </article>
-
-            <article class="control-step">
-              <span class="step-number">03</span>
-              <div class="touch-demo" aria-hidden="true">
-                <span class="touch-ring"></span>
-                <span class="touch-core"></span>
-                <span class="touch-arrow"></span>
-              </div>
-              <div class="step-copy">
-                <h3>Release &amp; dodge</h3>
-                <p>Lift your finger, read the attack, then move again.</p>
-              </div>
-            </article>
+            <a
+              class="button primary"
+              href="https://play.google.com/store/apps/details?id=com.farizad.abrax_protocol&pcampaignid=web_share"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Download on Google Play</span>
+            </a>
           </div>
         </div>
       </section>
 
+      <!-- Controls & Core Mechanics -->
+      <section
+        id="controls"
+        class="page-shell"
+        aria-labelledby="controls-title"
+      >
+        <div class="section-head">
+          <div>
+            <p class="kicker">Controls &amp; Upgrades</p>
+            <h2 id="controls-title">Core Gameplay Mechanics</h2>
+          </div>
+          <p>
+            Simple touch controls give you full precision. Master time control,
+            dodges, and shields to reach higher scores.
+          </p>
+        </div>
+
+        <div class="controls-grid">
+          <!-- Item 1: Touch & Drag -->
+          <article class="control-card">
+            <div class="control-media">
+              <img src="assets/dodge.webp" alt="Touch and drag ship movement" />
+            </div>
+            <div class="control-body">
+              <div>
+                <h3>Touch &amp; Dodge</h3>
+                <p>
+                  Slide your finger anywhere on screen. Your ship responds
+                  instantly with sub-frame precision.
+                </p>
+              </div>
+              <div class="control-tag">MOVEMENT // SMOOTH TOUCH</div>
+            </div>
+          </article>
+
+          <!-- Item 2: Hold to Freeze -->
+          <article class="control-card">
+            <div class="control-media">
+              <img src="assets/freeze.webp" alt="Hold to freeze time" />
+            </div>
+            <div class="control-body">
+              <div>
+                <h3>Hold to Freeze</h3>
+                <p>
+                  Hold your finger down to slow time when bullets get dense.
+                  Watch your energy meter.
+                </p>
+              </div>
+              <div class="control-tag">TIME CONTROL // SLOW-MO</div>
+            </div>
+          </article>
+
+          <!-- Item 3: Nova Bomb -->
+          <article class="control-card">
+            <div class="control-media">
+              <img src="assets/bomb.webp" alt="Nova Bomb" />
+            </div>
+            <div class="control-body">
+              <div>
+                <h3>Nova Bomb</h3>
+                <p>
+                  Clear all enemy bullets in a massive blast that turns hostile
+                  fire into upgrade shards.
+                </p>
+              </div>
+              <div class="control-tag">SCREEN CLEAR // SHARD REWARD</div>
+            </div>
+          </article>
+
+          <!-- Item 4: Force Shield -->
+          <article class="control-card">
+            <div class="control-media">
+              <img src="assets/shield.webp" alt="Force Shield" />
+            </div>
+            <div class="control-body">
+              <div>
+                <h3>Force Shield</h3>
+                <p>
+                  Absorb a fatal hit, keep your high-score combo going, and stay
+                  alive during intense waves.
+                </p>
+              </div>
+              <div class="control-tag">DEFENSE // HIT PROTECTION</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Maps / Sectors -->
+      <section
+        id="sectors"
+        class="sectors-band"
+        aria-labelledby="sectors-title"
+      >
+        <div class="page-shell">
+          <div class="section-head">
+            <div>
+              <p class="kicker">Locations</p>
+              <h2 id="sectors-title">15 Playable Maps</h2>
+            </div>
+            <p>
+              Travel across 15 distinct planets and cosmic sectors, each with
+              unique hazards, visuals, and enemy patterns.
+            </p>
+          </div>
+
+          <div class="sector-layout">
+            <div class="sector-tabs" role="tablist" aria-label="Map Selection">
+              <button
+                class="sector-btn active"
+                role="tab"
+                aria-selected="true"
+                data-title="Zenith-1B"
+                data-desc="Starter sector with balanced wave patterns, designed to master touch movement and freeze timing."
+                data-img="assets/zenith.webp"
+              >
+                <span class="name">01 // Zenith-1B</span>
+                <span class="badge-pill" style="color: var(--green)"
+                  >Starter</span
+                >
+              </button>
+
+              <button
+                class="sector-btn"
+                role="tab"
+                aria-selected="false"
+                data-title="Brachiys-II"
+                data-desc="Volcanic nebula map with fast spiral bullet attacks and heavy enemy pressure."
+                data-img="assets/brachiys.webp"
+              >
+                <span class="name">02 // Brachiys-II</span>
+                <span class="badge-pill" style="color: var(--ember)">Hard</span>
+              </button>
+
+              <button
+                class="sector-btn"
+                role="tab"
+                aria-selected="false"
+                data-title="Farhanos Void"
+                data-desc="Deep dark space map with curved bullet paths and intense enemy waves."
+                data-img="assets/farhanos.webp"
+              >
+                <span class="name">03 // Farhanos Void</span>
+                <span class="badge-pill" style="color: var(--ice)"
+                  >Extreme</span
+                >
+              </button>
+
+              <button
+                class="sector-btn"
+                role="tab"
+                aria-selected="false"
+                data-title="Babylonia-9"
+                data-desc="Technological cyber-station with destructible obstacles, laser hazards, and fast turrets."
+                data-img="assets/babylon.webp"
+              >
+                <span class="name">04 // Babylonia-9</span>
+                <span class="badge-pill" style="color: var(--amber)"
+                  >Medium</span
+                >
+              </button>
+
+              <button
+                class="sector-btn"
+                role="tab"
+                aria-selected="false"
+                data-title="Mars Reach"
+                data-desc="Crimson planet map with aggressive enemy formations and fast-paced action."
+                data-img="assets/mars.webp"
+              >
+                <span class="name">05 // Mars Reach</span>
+                <span class="badge-pill" style="color: var(--amber)"
+                  >Medium</span
+                >
+              </button>
+
+              <button
+                class="sector-btn"
+                role="tab"
+                aria-selected="false"
+                data-title="Earth Orbital"
+                data-desc="Defend the home atmosphere against massive endgame waves and boss encounters."
+                data-img="assets/earth.webp"
+              >
+                <span class="name">06 // Earth Orbital</span>
+                <span class="badge-pill" style="color: var(--ember)"
+                  >Endgame</span
+                >
+              </button>
+            </div>
+
+            <!-- Map View Stage -->
+            <div class="sector-stage" aria-live="polite">
+              <div class="sector-stage-art">
+                <img
+                  id="map-display-img"
+                  src="assets/zenith.webp"
+                  alt="Zenith-1B Map"
+                />
+              </div>
+              <div class="sector-stage-details">
+                <h3 id="map-display-title">Zenith-1B</h3>
+                <p id="map-display-desc">
+                  Starter sector with balanced wave patterns, designed to master
+                  touch movement and freeze timing.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Game Modes -->
+      <section id="modes" class="page-shell" aria-labelledby="modes-title">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Game Modes</p>
+            <h2 id="modes-title">Multiple Ways to Play</h2>
+          </div>
+          <p>
+            Whether you want a quick 2-minute survival run or want to challenge
+            bosses and daily goals.
+          </p>
+        </div>
+
+        <div class="modes-grid">
+          <article class="mode-card">
+            <div>
+              <span class="mode-tag">MODE 01</span>
+              <h3>Endless Survival</h3>
+              <p>
+                Survive as long as you can against escalating waves, collect
+                shards, and unlock new skins and maps.
+              </p>
+            </div>
+          </article>
+
+          <article class="mode-card">
+            <div>
+              <span class="mode-tag">MODE 02</span>
+              <h3>Boss Rush &amp; Time Trial</h3>
+              <p>
+                Take down colossal bosses as fast as possible to earn high
+                grades and top the leaderboards.
+              </p>
+            </div>
+          </article>
+
+          <article class="mode-card">
+            <div>
+              <span class="mode-tag">MODE 03</span>
+              <h3>Daily Challenges</h3>
+              <p>
+                Every day brings a new challenge with bonus shard payouts and
+                unique gameplay mutators.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Studio Section -->
       <section id="studio" class="studio-band" aria-labelledby="studio-title">
         <div class="studio-grid page-shell">
           <div>
-            <p class="kicker">The studio</p>
+            <p class="kicker">About Faraz Studio</p>
             <h2 id="studio-title">
-              Small team energy. (Actually currently only one developer.)
-              Big-screen ambition.
+              Small team energy. <br /><span class="text-ember"
+                >Big ambitions.</span
+              >
             </h2>
             <p>
-              Faraz Studio builds games with cinematic sci-fi and
-              political/history themes in hope of creating a unique and
-              memorable experience for players. The studio is currently a
-              one-person operation, but the goal is to grow into a small team of
-              passionate developers who can bring even more ambitious projects
-              to life.
+              Faraz Studio is a solo independent developer passionate about
+              crafting atmospheric sci-fi games that are punchy, responsive, and
+              genuinely fun to play.
             </p>
+            <a class="button" href="#contact">Get In Touch</a>
           </div>
-          <div class="principles" aria-label="Studio principles">
-            <div class="principle">
-              <strong>Atmosphere First</strong>
+
+          <div class="principles-list">
+            <div class="principle-item">
+              <strong>Atmosphere &amp; Style</strong>
               <span
-                >Worlds, menus, audio, and motion all push the same
-                fantasy.</span
+                >Dark sci-fi visuals, neon vector ships, and electronic synth
+                audio built to immerse you.</span
               >
             </div>
-            <div class="principle">
-              <strong>Built for ALL devices</strong>
+
+            <div class="principle-item">
+              <strong>No Forced Ads</strong>
               <span
-                >Fast loads, clear contrast, strong touch targets, and flexible
-                layouts.</span
+                >No mandatory ad popups interrupting your gameplay runs. Pure
+                arcade action.</span
               >
             </div>
-            <div class="principle">
-              <strong>Replayable Pressure</strong>
+
+            <div class="principle-item">
+              <strong>High Frame Rate Performance</strong>
               <span
-                >Short sessions with score chase, mode mastery, and escalating
-                stakes. We want you to be entertained.</span
+                >Smooth 60–120Hz support on Android with instant load times and
+                lightweight storage footprint.</span
               >
             </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="page-shell" aria-labelledby="contact-title">
-        <div class="contact-strip">
+      <!-- FAQ Section -->
+      <section id="faq" class="page-shell" aria-labelledby="faq-title">
+        <div class="section-head">
           <div>
-            <h2 id="contact-title">Anything to reach us about?</h2>
+            <p class="kicker">Questions &amp; Info</p>
+            <h2 id="faq-title">Frequently Asked Questions</h2>
+          </div>
+          <p>Quick answers about the game and studio.</p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h3>Is Abrax Protocol free?</h3>
             <p>
-              What are you waiting for? We are always open to new ideas,
-              collaborations, and feedback. Reach out to us and let's make
-              something amazing together. Me and you.
+              Yes, Abrax Protocol is free to download on Google Play with zero
+              mandatory ads.
             </p>
           </div>
-          <a class="button primary" href="mailto:farazstudio.dev@gmail.com"
-            >Contact Faraz Studio</a
-          >
+
+          <div class="faq-card">
+            <h3>Can I play offline?</h3>
+            <p>
+              Yes. Once installed, the entire game and all 15 maps can be played
+              completely offline.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3>What Android version is required?</h3>
+            <p>
+              The game runs on Android 8.0 and above, and scales automatically
+              to 60Hz and 120Hz screens.
+            </p>
+          </div>
+
+          <div class="faq-card">
+            <h3>How do I contact Faraz Studio?</h3>
+            <p>
+              You can email directly at farazstudio.dev@gmail.com for feedback,
+              bug reports, or collaboration.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section
+        id="contact"
+        class="page-shell"
+        aria-labelledby="contact-title"
+        style="padding-top: 0"
+      >
+        <div class="contact-strip">
+          <div>
+            <p class="kicker" style="color: var(--ice)">Direct Comms</p>
+            <h2 id="contact-title">Reach Out to Us</h2>
+            <p>
+              Got feedback on Abrax Protocol, an idea for future updates, or
+              just want to say hi? Reach out anytime.
+            </p>
+          </div>
+
+          <div class="contact-right">
+            <a class="button primary" href="mailto:farazstudio.dev@gmail.com">
+              <span>Send an Email</span>
+            </a>
+            <div
+              id="copy-email-btn"
+              class="email-pill"
+              role="button"
+              tabindex="0"
+              title="Click to copy email address"
+            >
+              <span>farazstudio.dev@gmail.com</span>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
+    <!-- Toast Notification -->
+    <div id="toast-message" role="status" aria-live="polite">
+      Email copied to clipboard!
+    </div>
+
+    <!-- Footer -->
     <footer class="site-footer">
-      <div class="footer-inner page-shell">
-        <span>Copyright 2026 Faraz Studio. All rights reserved.</span>
-        <span><a href="privacy-policy.html">Privacy Policy</a></span>
+      <div class="page-shell footer-inner">
+        <div>
+          <strong
+            style="
+              color: #fff;
+              font-family: var(--font-head);
+              font-size: 16px;
+              letter-spacing: 0.08em;
+            "
+            >FARAZ STUDIO</strong
+          >
+          <span style="display: block; margin-top: 4px; font-size: 13px"
+            >Copyright © 2026 Faraz Studio. All rights reserved.</span
+          >
+        </div>
+
+        <div class="footer-links">
+          <a href="#top">Back to Top</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.farizad.abrax_protocol&pcampaignid=web_share"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Google Play</a
+          >
+          <a href="mailto:farazstudio.dev@gmail.com">Contact</a>
+        </div>
       </div>
     </footer>
+
+    <!-- Scripts: Starfield Canvas, Map Switcher, Mobile Nav Drawer, Copy Email -->
+    <script>
+      (function () {
+        "use strict";
+
+        // --- 1. Starfield Background ---
+        const canvas = document.getElementById("starfield-canvas");
+        const ctx = canvas.getContext("2d");
+        let width = 0,
+          height = 0;
+        let stars = [];
+        const numStars = 85;
+
+        function resizeCanvas() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+          stars = [];
+          for (let i = 0; i < numStars; i++) {
+            stars.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              size: Math.random() * 1.6 + 0.4,
+              speed: Math.random() * 0.35 + 0.1,
+              opacity: Math.random() * 0.7 + 0.3,
+              isRed: Math.random() > 0.82,
+            });
+          }
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        function animateStars() {
+          ctx.clearRect(0, 0, width, height);
+          for (let i = 0; i < stars.length; i++) {
+            const s = stars[i];
+            s.y += s.speed;
+            if (s.y > height) {
+              s.y = 0;
+              s.x = Math.random() * width;
+            }
+
+            ctx.fillStyle = s.isRed
+              ? `rgba(255, 75, 75, ${s.opacity})`
+              : `rgba(180, 225, 255, ${s.opacity})`;
+
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(animateStars);
+        }
+        requestAnimationFrame(animateStars);
+
+        // --- 2. Mobile Drawer Navigation ---
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const drawer = document.getElementById("mobile-drawer");
+        const hamburgerIcon = document.getElementById("hamburger-icon");
+        const closeIcon = document.getElementById("close-icon");
+        const mobileLinks = document.querySelectorAll(".mobile-link");
+
+        function toggleMenu(forceClose = false) {
+          const isOpen = forceClose
+            ? false
+            : !drawer.classList.contains("open");
+          if (isOpen) {
+            drawer.classList.add("open");
+            drawer.setAttribute("aria-hidden", "false");
+            menuBtn.setAttribute("aria-expanded", "true");
+            hamburgerIcon.style.display = "none";
+            closeIcon.style.display = "block";
+            document.body.style.overflow = "hidden";
+          } else {
+            drawer.classList.remove("open");
+            drawer.setAttribute("aria-hidden", "true");
+            menuBtn.setAttribute("aria-expanded", "false");
+            hamburgerIcon.style.display = "block";
+            closeIcon.style.display = "none";
+            document.body.style.overflow = "";
+          }
+        }
+
+        if (menuBtn) {
+          menuBtn.addEventListener("click", () => toggleMenu());
+        }
+
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", () => toggleMenu(true));
+        });
+
+        // --- 3. Interactive Map Switcher ---
+        const sectorButtons = document.querySelectorAll(".sector-btn");
+        const displayImg = document.getElementById("map-display-img");
+        const displayTitle = document.getElementById("map-display-title");
+        const displayDesc = document.getElementById("map-display-desc");
+
+        sectorButtons.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            sectorButtons.forEach((b) => {
+              b.classList.remove("active");
+              b.setAttribute("aria-selected", "false");
+            });
+            this.classList.add("active");
+            this.setAttribute("aria-selected", "true");
+
+            displayImg.style.opacity = "0.25";
+            setTimeout(() => {
+              displayImg.src = this.dataset.img;
+              displayTitle.textContent = this.dataset.title;
+              displayDesc.textContent = this.dataset.desc;
+              displayImg.style.opacity = "1";
+            }, 100);
+          });
+        });
+
+        // --- 4. Copy Email Toast ---
+        const copyBtn = document.getElementById("copy-email-btn");
+        const toast = document.getElementById("toast-message");
+        let timeoutId = null;
+
+        function showToast(text) {
+          if (toast) {
+            toast.textContent = text;
+            toast.classList.add("show");
+            if (timeoutId) clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+              toast.classList.remove("show");
+            }, 2500);
+          }
+        }
+
+        if (copyBtn) {
+          copyBtn.addEventListener("click", () => {
+            const email = "farazstudio.dev@gmail.com";
+            navigator.clipboard
+              .writeText(email)
+              .then(() => {
+                showToast("✓ Copied: " + email);
+              })
+              .catch(() => {
+                showToast("Email: farazstudio.dev@gmail.com");
+              });
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
