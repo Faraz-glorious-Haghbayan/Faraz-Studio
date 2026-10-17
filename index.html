@@ -10,32 +10,32 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>Faraz Studio | Abrax Protocol — Sci-Fi Space Action</title>
+    <title>Faraz Studio | Abrax Protocol &amp; La Plaza</title>
     <meta
       name="description"
-      content="Faraz Studio is an independent single-developer studio creating fast, atmospheric sci-fi games. Play Abrax Protocol free on Android."
+      content="Independent games by Faraz Studio. Play Abrax Protocol on Android and discover La Plaza, an offline territorial strategy game in development."
     />
     <meta name="theme-color" content="#05070d" />
     <link rel="canonical" href="https://farazstudio.com/" />
-    <link rel="icon" href="favicon.ico?v=4" sizes="any" />
+    <link rel="icon" href="favicon/favicon.ico?v=4" sizes="any" />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="favicon-32x32.png?v=4"
+      href="favicon/favicon-32x32.png?v=4"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="favicon-16x16.png?v=4"
+      href="favicon/favicon-16x16.png?v=4"
     />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="apple-touch-icon.png?v=4"
+      href="favicon/apple-touch-icon.png?v=4"
     />
-    <link rel="manifest" href="site.webmanifest?v=4" />
+    <link rel="manifest" href="favicon/site.webmanifest?v=4" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -422,10 +422,11 @@
         z-index: 190;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 24px;
         padding: 80px 24px 40px;
+        overflow-y: auto;
         opacity: 0;
         pointer-events: none;
         transform: translateY(-20px);
@@ -440,6 +441,7 @@
 
       .mobile-menu-links {
         display: flex;
+        flex-shrink: 0;
         flex-direction: column;
         align-items: center;
         gap: 20px;
@@ -459,6 +461,7 @@
       }
 
       .mobile-cta-row {
+        flex-shrink: 0;
         margin-top: 10px;
         width: 100%;
         max-width: 280px;
@@ -1211,6 +1214,7 @@
 
       .footer-links {
         display: flex;
+        flex-wrap: wrap;
         gap: 18px;
         font-family: var(--font-head);
         font-weight: 700;
@@ -1320,6 +1324,176 @@
           scroll-behavior: auto !important;
         }
       }
+      .laplaza-band {
+        margin: 0;
+        padding: 0;
+        background: #101b17;
+        border-block: 1px solid #b7c99d45;
+        scroll-margin-top: 90px;
+      }
+      .laplaza-scene {
+        position: relative;
+        min-height: 510px;
+        display: flex;
+        align-items: end;
+        isolation: isolate;
+        overflow: hidden;
+      }
+      .laplaza-scene > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+      }
+      .laplaza-scene::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(
+          0deg,
+          #101b17 0%,
+          #101b17c9 35%,
+          #101b1710 100%
+        );
+      }
+      .laplaza-intro {
+        padding-block: 70px 42px;
+      }
+      .laplaza-intro .kicker {
+        color: #cce69a;
+        letter-spacing: 0;
+      }
+      .laplaza-intro .kicker::before {
+        background: #cce69a;
+        box-shadow: none;
+      }
+      .laplaza-intro h2 {
+        font-size: 80px;
+        line-height: 1;
+        letter-spacing: 0;
+        margin-bottom: 20px;
+      }
+      .laplaza-intro p:not(.kicker) {
+        max-width: 610px;
+        color: #e1e9dd;
+        font-size: 18px;
+        line-height: 1.65;
+      }
+      .laplaza-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+      .laplaza-actions .button {
+        border-color: #cce69a88;
+        background: #15251ee0;
+        color: #eff5e7;
+        letter-spacing: 0;
+        white-space: normal;
+        text-align: center;
+      }
+      .laplaza-actions .button:hover {
+        border-color: #cce69a;
+        box-shadow: none;
+        background: #2a4031;
+      }
+      .laplaza-details {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+        gap: 54px;
+        padding-block: 28px 64px;
+        align-items: start;
+      }
+      .laplaza-facts {
+        display: flex;
+        gap: 14px 30px;
+        flex-wrap: wrap;
+        border-block: 1px solid #d1dfc940;
+        padding: 20px 0;
+        margin: 0 0 26px;
+      }
+      .laplaza-facts dt {
+        color: #a5b8a9;
+        font-size: 12px;
+      }
+      .laplaza-facts dd {
+        margin: 5px 0 0;
+        color: #eff5e7;
+        font-family: var(--font-head);
+        font-size: 24px;
+        line-height: 1.1;
+      }
+      .laplaza-details h3 {
+        font-size: 30px;
+        line-height: 1.15;
+        letter-spacing: 0;
+        margin-bottom: 16px;
+      }
+      .laplaza-details p {
+        color: #c5d4c7;
+      }
+      .laplaza-note {
+        font-size: 13px;
+        border-left: 2px solid #cce69a;
+        padding-left: 15px;
+        margin-bottom: 0;
+      }
+      .laplaza-preview {
+        margin: 0;
+        min-width: 0;
+      }
+      .laplaza-preview img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/10;
+        object-fit: contain;
+        border: 1px solid #c4d3b84d;
+        border-radius: 3px;
+      }
+      .laplaza-preview figcaption {
+        font-size: 12px;
+        color: #a5b8a9;
+        margin-top: 12px;
+      }
+      .hero-new-game {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 20px;
+        font-size: 13px;
+        color: #cce69a;
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+      .hero-new-game:hover {
+        color: #fff;
+      }
+      @media (max-width: 760px) {
+        .laplaza-scene {
+          min-height: 460px;
+        }
+        .laplaza-intro {
+          padding-block: 60px 28px;
+        }
+        .laplaza-intro h2 {
+          font-size: 60px;
+        }
+        .laplaza-intro p:not(.kicker) {
+          font-size: 16px;
+        }
+        .laplaza-details {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 28px;
+          padding-bottom: 40px;
+        }
+        .laplaza-facts {
+          gap: 16px 24px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1343,7 +1517,8 @@
 
         <!-- Desktop Navigation Links -->
         <nav class="desktop-links" aria-label="Main navigation">
-          <a href="#overview">Game</a>
+          <a href="#overview">Abrax</a>
+          <a href="#laplaza">La Plaza</a>
           <a href="#controls">Controls</a>
           <a href="#sectors">Maps</a>
           <a href="#modes">Modes</a>
@@ -1390,7 +1565,8 @@
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-drawer" class="mobile-menu-drawer" aria-hidden="true">
       <nav class="mobile-menu-links">
-        <a href="#overview" class="mobile-link">Game</a>
+        <a href="#overview" class="mobile-link">Abrax Protocol</a>
+        <a href="#laplaza" class="mobile-link">La Plaza</a>
         <a href="#controls" class="mobile-link">Controls</a>
         <a href="#sectors" class="mobile-link">Maps</a>
         <a href="#modes" class="mobile-link">Modes</a>
@@ -1398,6 +1574,7 @@
         <a href="#faq" class="mobile-link">FAQ</a>
         <a href="#contact" class="mobile-link">Contact</a>
         <a href="privacy-policy.html" class="mobile-link">Privacy Policy</a>
+        <a href="privacy.html" class="mobile-link">La Plaza Privacy</a>
       </nav>
 
       <div class="mobile-cta-row">
@@ -1474,6 +1651,10 @@
                 <span class="lbl">Play Anywhere</span>
               </div>
             </div>
+            <a class="hero-new-game" href="#laplaza"
+              >Also in development: La Plaza
+              <span aria-hidden="true">&#8599;</span></a
+            >
           </div>
 
           <!-- Hero Image Card -->
@@ -1486,6 +1667,85 @@
               <span style="color: var(--green)">READY ON ANDROID</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section
+        id="laplaza"
+        class="laplaza-band"
+        aria-labelledby="laplaza-title"
+      >
+        <div class="laplaza-scene">
+          <img
+            src="laplaza/background.webp"
+            alt=""
+            loading="lazy"
+            width="1280"
+            height="720"
+          />
+          <div class="laplaza-intro page-shell">
+            <p class="kicker">New from Faraz Studio / In development</p>
+            <h2 id="laplaza-title">La Plaza</h2>
+            <p>
+              Four rival houses. Thirty-two territories. Every decision changes
+              the balance of power.
+            </p>
+            <p>
+              Lead a fictional syndicate through an offline campaign of
+              territorial strategy, fragile alliances, and rising federal
+              pressure across Mexico.
+            </p>
+            <div class="laplaza-actions">
+              <a class="button" href="#laplaza-details">Explore the campaign</a>
+              <a class="button" href="privacy.html">La Plaza privacy policy</a>
+            </div>
+          </div>
+        </div>
+        <div id="laplaza-details" class="laplaza-details page-shell">
+          <div>
+            <dl class="laplaza-facts">
+              <div>
+                <dt>Genre</dt>
+                <dd>Turn-based strategy</dd>
+              </div>
+              <div>
+                <dt>Players</dt>
+                <dd>Single player</dd>
+              </div>
+              <div>
+                <dt>First platform</dt>
+                <dd>Android</dd>
+              </div>
+            </dl>
+            <h3>Take territory. Hold your ground.</h3>
+            <p>
+              Choose one of four houses with distinct strengths. Manage manpower
+              and cash, seize valuable states, raid rivals, and negotiate peace.
+              Grow too powerful and the Mexican government will intervene.
+            </p>
+            <p>
+              Three orders per turn. Regional economies that matter. A campaign
+              saved on your device, ready to resume without an account or
+              internet connection in the Android build.
+            </p>
+            <p class="laplaza-note">
+              In development. Release date and store availability have not been
+              announced. All houses and campaign scenarios are fictional.
+            </p>
+          </div>
+          <figure class="laplaza-preview">
+            <img
+              src="laplaza/gameplay.webp"
+              alt="La Plaza development build showing Mexico's territorial map, manpower, tactical forecasts, and campaign orders"
+              loading="lazy"
+              width="1440"
+              height="900"
+            />
+            <figcaption>
+              La Plaza / Development build. Artwork and interface may change
+              before release.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -1831,13 +2091,12 @@
           <div>
             <p class="kicker">About Faraz Studio</p>
             <h2 id="studio-title">
-              Small team? <br /><span class="text-ember"
-                >No. Only me.</span
-              >
+              Small team? <br /><span class="text-ember">No. Only me.</span>
             </h2>
             <p>
-              Faraz Studio is a solo independent game studio, created and run by me, Faraz Haghbayan, who is passionate about
-              crafting atmospheric sci-fi games that are punchy, responsive, and
+              Faraz Studio is a solo independent game studio, created and run by
+              me, Faraz Haghbayan, who is passionate about crafting atmospheric
+              action and strategy games that are distinctive, responsive, and
               genuinely fun to play.
             </p>
             <a class="button" href="#contact">Get In Touch</a>
@@ -1928,8 +2187,8 @@
             <p class="kicker" style="color: var(--ice)">Direct Comms</p>
             <h2 id="contact-title">Reach Out to Us</h2>
             <p>
-              Got feedback on Abrax Protocol, an idea for future updates, or
-              just want to say hi? Reach out anytime.
+              Got feedback on Abrax Protocol or La Plaza, an idea for future
+              updates, or just want to say hi? Reach out anytime.
             </p>
           </div>
 
@@ -1987,6 +2246,7 @@
         <div class="footer-links">
           <a href="#top">Back to Top</a>
           <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="privacy.html">La Plaza Privacy</a>
           <a
             href="https://play.google.com/store/apps/details?id=com.farizad.abrax_protocol&pcampaignid=web_share"
             target="_blank"
