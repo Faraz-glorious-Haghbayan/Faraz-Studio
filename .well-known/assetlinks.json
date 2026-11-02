@@ -1,0 +1,17 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.farizad.abrax_protocol",
+      "sha256_cert_fingerprints": [
+        "A4:0D:B2:E8:74:38:AA:87:C3:FE:07:D7:F5:D8:27:DB:39:43:2C:7D:76:E9:5C:2E:A1:C0:D4:70:4D:6A:BE:76",
+        "81:EC:30:F0:30:6A:FE:D7:5B:17:6B:96:69:CA:C7:E7:43:B2:59:F5:7E:AE:8E:91:4C:1D:0D:EA:20:55:4A:85",
+        "7F:A3:83:83:2D:24:FB:85:70:B0:CE:8C:FC:E0:1D:66:78:E4:AA:CB:49:45:D6:17:C6:1D:3B:7C:24:13:0B:13"
+      ]
+    }
+  }
+]
